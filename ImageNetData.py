@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import random
 from glob import glob
@@ -81,7 +82,7 @@ class ImageNetDataloader(Dataset):
                     class_id+=1      
 
                 
-        
+
 #         for i in range(20):
 #             leafnode = self.get_leafnode(data["children"][i])
 #             same_class = [j[2] for j in leafnode]
@@ -96,8 +97,8 @@ class ImageNetDataloader(Dataset):
 #                                       "category_name": data["children"][i]['name']}
 #                     self.id2name[index] = name
 #                     class_id+=1                
-                
-                
+
+
     def __len__(self):
         return len(self.labels)
 
@@ -109,7 +110,7 @@ class ImageNetDataloader(Dataset):
         if random.random() <= self.random_rate:
             change_idx = ((data["same_class"].index(data["class_id"])) + random.randrange(0, len(data["same_class"]))) % len(data['same_class'])
             label = data["same_class"][change_idx]
-            
+
 
 #             label = same_class[0] + (((data["category_id"] - same_class[0]) + random.randrange(1,len(same_class)))% len(same_class))
 #             print(data["category_name"])
@@ -132,6 +133,6 @@ class ImageNetDataloader(Dataset):
             return [(data["id"], data["name"], int(data['index']))]
 
 
-                                 
+
 # dataloader = ImageNetDataloader(img_dir = "data/ILSVRC2012_img_val/",  
 #                                 label_dir = "data/ILSVRC2012_bbox_val_v3/val/", random_rate = 0.5)
